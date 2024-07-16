@@ -5,7 +5,6 @@ tests/__pycache__/
 .idea/
 .idea
 .venv/
-.venv
 
 # Unit test
 htmlcov/
