@@ -14,3 +14,9 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('category',)
     search_fields = ('name', 'description')
 
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'phone')
+    list_filter = ('name',)
+    search_fields = ('name', 'phone')
