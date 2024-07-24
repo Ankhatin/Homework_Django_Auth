@@ -1,0 +1,24 @@
+{% extends 'catalog/base.html' %}
+{% load tags %}
+{% block content %}
+<!--<div class="container">-->
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+            <div class="card rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">{{ category }}</h4><br>
+                    <h4 class="my-0 fw-normal">{{ object.name }}</h4>
+                </div>
+                <img src="{% add_path object.image %}" class="card-img-top" alt="Изображения нет">
+                <div class="card-body">
+                    <h2 class="card-title pricing-card-title">{{ object.price }}$</h2>
+                    <p>
+                        {{ object.description }}
+                    </p>
+                    <button type="button" class="w-100 btn btn-lg btn-success">Купить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--</div>-->
+{% endblock %}

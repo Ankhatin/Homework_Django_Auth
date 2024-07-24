@@ -1,9 +1,22 @@
 from django.db import models
+import psycopg2
+from config.settings import DATABASES
 
 
 class Category(models.Model):
     name = models.CharField(max_length=30, verbose_name='Категория')
     description = models.CharField(max_length=200, verbose_name='Описание')
+
+    @classmethod
+    def truncate_table(cls):
+        conn = psycopg2.connect(database=DATABASES['default']['NAME'],
+                                host=DATABASES['default']['HOST'],
+                                user=DATABASES['default']['USER'],
+                                password=DATABASES['default']['PASSWORD'])
+        with conn.cursor() as cursor:
+            cursor.execute(f'TRUNCATE TABLE {cls._meta.db_table} RESTART IDENTITY CASCADE')
+        conn.commit()
+        conn.close()
 
     def __str__(self):
         return f'{self.name}'
