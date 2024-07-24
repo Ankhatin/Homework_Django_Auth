@@ -12,7 +12,7 @@
             <div class="card-body">
                 <h2 class="card-title pricing-card-title">{{ object.price }}$</h2>
                 <p>
-                    {{ object.description }}
+                    {{ object.description | slice:100 }}
                 </p>
                 <button type="button" class="w-100 btn btn-lg btn-success">Купить</button>
             </div>

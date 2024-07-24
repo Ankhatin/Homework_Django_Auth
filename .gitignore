@@ -12,5 +12,3 @@ htmlcov/
 
 # Django
 db.sqlite3
-
-*.json
