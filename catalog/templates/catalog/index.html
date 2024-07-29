@@ -1,0 +1,150 @@
+{% extends 'catalog/base.html' %}
+{% load tags %}
+{% block content %}
+<div class="row">
+    {% for object in object_list %}
+    <div class="col-md-4 text-center">
+        <div class="card rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">{{ object.name }}</h4>
+            </div>
+            <img src="{% add_path object.image %}" class="card-img-top" width="75%" height="300" alt="Изображения нет">
+            <div class="card-body">
+                <h2 class="card-title pricing-card-title">{{ object.price }}$</h2>
+                <p>
+                    {{ object.description | slice:100 }}
+                </p>
+                <button type="button" class="w-100 btn btn-lg btn-success">Купить</button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="col-4">
+    <div class="card rounded-3 width-50 mt-3 mb-5">
+        <div class="card-body">
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Имя</label>
+                    <input type="text" name="name" class="form-control" id="name"
+                           placeholder="Ваше имя"
+                           aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" name="email" class="form-control" id="email"
+                           placeholder="Ваш email">
+                </div>
+                <button type="submit" class="btn btn-primary form-control">Отправить</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <h2 class="pricing-header p-3 pb-md-10 mx-auto text-center">FAQ</h2>
+    </div>
+    <div class="col-4">
+        <p>
+            <button class="btn btn-primary form-control" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseWidthExample1" aria-expanded="false"
+                    aria-controls="collapseWidthExample1">
+                Как купить?
+            </button>
+        </p>
+        <div style="min-height: 120px;">
+            <div class="collapse collapse-horizontal" id="collapseWidthExample1">
+                <div class="card card-body form-control" style="width: 300px;">
+                    Купить наш товар очень просто.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <p>
+            <button class="btn btn-primary form-control" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseWidthExample2" aria-expanded="false"
+                    aria-controls="collapseWidthExample2">
+                Как доставить?
+            </button>
+        </p>
+        <div style="min-height: 120px;">
+            <div class="collapse collapse-horizontal" id="collapseWidthExample2">
+                <div class="card card-body form-control" style="width: 300px;">
+                    Доставить можно любой логистической компанией.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <p>
+            <button class="btn btn-primary form-control" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseWidthExample3" aria-expanded="false"
+                    aria-controls="collapseWidthExample3">
+                Какая гарантия?
+            </button>
+        </p>
+        <div style="min-height: 120px;">
+            <div class="collapse collapse-horizontal" id="collapseWidthExample3">
+                <div class="card card-body form-control" style="width: 300px;">
+                    Гарантия предоставляется заводом изготовителем.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Номер</th>
+        <th scope="col">Название товара</th>
+        <th scope="col">Цена за штуку</th>
+        <th scope="col">Количество</th>
+        <th scope="col">Итоговая сумма</th>
+        <th scope="col">Статус заказа</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td>Смартфон Samsung</td>
+        <td>70</td>
+        <td>10</td>
+        <td>700</td>
+        <td>
+            <div class="alert alert-primary" role="alert">
+                новый
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td>Смартфон Apple</td>
+        <td>100</td>
+        <td>15</td>
+        <td>1500</td>
+        <td>
+            <div class="alert alert-warning" role="alert">
+                обработка
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td>Смарфон Xiaomi</td>
+        <td>50</td>
+        <td>20</td>
+        <td>1000</td>
+        <td>
+            <div class="alert alert-success" role="alert">
+                обработан
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+{% endblock %}
+
+
