@@ -8,7 +8,7 @@ class Article(models.Model):
     preview = models.ImageField(upload_to='media/', null=True, blank=True, verbose_name='Изображение')
     created_at = models.DateField(auto_now_add=True)
     is_published = models.BooleanField(default=True)
-    count_review = models.IntegerField()
+    count_review = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
