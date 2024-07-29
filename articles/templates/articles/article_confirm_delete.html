@@ -1,0 +1,17 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <h6>Вы действительно хотите удалить статью {{ object.title }}</h6>
+                    <button type="submit" class="btn btn-danger">Подтвердить</button>
+                    <a href="{% url 'articles:article_list' %}" class="btn btn-warning">Отменить</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
