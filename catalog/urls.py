@@ -7,8 +7,10 @@ from catalog.apps import CatalogConfig
 app_name = CatalogConfig.name
 
 urlpatterns = [
-    path('', ProductListView.as_view(), name='list'),
+    path('', IndexView.as_view(), name='index'),
     path('contacts/', ContactsView.as_view(), name='contacts'),
     path('product/<int:pk>', ProductDetailView.as_view(), name='product'),
-    # path('products/', ProductDetailView.as_view(), name='products')
+    path('products/', ProductListView.as_view(), name='product_list')
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
