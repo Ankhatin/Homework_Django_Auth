@@ -1,10 +1,13 @@
 {% extends 'catalog/base.html' %}
 {% load tags %}
 {% block content %}
+<div class="col-md-4 mb-5">
+    <a class="btn btn-outline-primary" href="{% url 'catalog:create' %}">Создать продукт</a>
+</div>
 <div class="row">
     {% for object in object_list %}
     <div class="col-md-4 text-center">
-        <div class="card rounded-3 shadow-sm">
+        <div class="card rounded-3 shadow-sm mb-2">
             <div class="card-header py-3">
                 <h4 class="my-0 fw-normal">{{ object.name }}</h4>
             </div>
@@ -14,7 +17,16 @@
                 <p>
                     {{ object.description | slice:100 }}
                 </p>
+                {% if object in product_versions %}
+                <p>
+                    {% get_value product_versions object %}
+                </p>
+                {% endif %}
                 <button type="button" class="w-100 btn btn-lg btn-success">Купить</button>
+            </div>
+            <div class="card-footer">
+                <a type="button" href="{% url 'catalog:edit' object.pk %}" class="btn btn-warning">Редактировать</a>
+                <a type="button" href="{% url 'catalog:delete' object.pk %}" class="btn btn-danger">Удалить</a>
             </div>
         </div>
     </div>
