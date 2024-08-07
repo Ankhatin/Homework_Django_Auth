@@ -20,3 +20,9 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'phone')
     list_filter = ('name',)
     search_fields = ('name', 'phone')
+
+
+@admin.register(Version)
+class VersionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'product', 'number', 'is_current')
+    list_editable = ('name', 'number', 'is_current')
