@@ -1,6 +1,9 @@
 from django.db import models
 import psycopg2
 from config.settings import DATABASES
+from users.models import User
+
+NULLABLE = {'blank': True, 'null': True}
 
 
 class Category(models.Model):
@@ -32,6 +35,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='media/', null=True, blank=True, verbose_name='Изображение')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     price = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_products', **NULLABLE)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
 
@@ -41,18 +45,6 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
-
-
-class User(models.Model):
-    name = models.CharField(max_length=30, verbose_name='Имя')
-    phone = models.CharField(max_length=200, verbose_name='Телефон')
-
-    def __str__(self):
-        return f'{self.name}'
-
-    class Meta:
-        verbose_name = 'пользователь'
-        verbose_name_plural = 'пользователи'
 
 
 class Version(models.Model):
