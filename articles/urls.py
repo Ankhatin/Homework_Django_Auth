@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from articles.views import ArticleListView, ArticleCreateView, ArticleDetailView, ArticleUpdateView, ArticleDeleteView
-from catalog.apps import ArticlesConfig
+from articles.apps import ArticlesConfig
 
 app_name = ArticlesConfig.name
 

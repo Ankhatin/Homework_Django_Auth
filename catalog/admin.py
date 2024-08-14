@@ -15,13 +15,6 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('name', 'description')
 
 
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'phone')
-    list_filter = ('name',)
-    search_fields = ('name', 'phone')
-
-
 @admin.register(Version)
 class VersionAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'product', 'number', 'is_current')
