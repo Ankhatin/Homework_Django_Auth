@@ -32,6 +32,7 @@
     "image": "Samsung Galaxy A55.jpg",
     "category": 1,
     "price": 500,
+    "user": null,
     "created_at": "2024-07-24",
     "updated_at": "2024-07-24"
   }
@@ -45,6 +46,7 @@
     "image": "iphone15.jpeg",
     "category": 1,
     "price": 700,
+    "user": null,
     "created_at": "2024-07-24",
     "updated_at": "2024-07-24"
   }
@@ -58,6 +60,7 @@
     "image": "",
     "category": 2,
     "price": 1100,
+    "user": null,
     "created_at": "2024-07-24",
     "updated_at": "2024-07-24"
   }
@@ -71,6 +74,7 @@
     "image": "",
     "category": 2,
     "price": 800,
+    "user": null,
     "created_at": "2024-07-24",
     "updated_at": "2024-07-24"
   }
@@ -84,6 +88,7 @@
     "image": "",
     "category": 3,
     "price": 200,
+    "user": null,
     "created_at": "2024-07-24",
     "updated_at": "2024-07-24"
   }
@@ -97,6 +102,7 @@
     "image": "",
     "category": 3,
     "price": 100,
+    "user": null,
     "created_at": "2024-07-24",
     "updated_at": "2024-07-24"
   }
@@ -110,16 +116,23 @@
     "image": "",
     "category": 1,
     "price": 300,
+    "user": null,
     "created_at": "2024-08-06",
     "updated_at": "2024-08-07"
   }
 },
 {
-  "model": "catalog.user",
-  "pk": 1,
+  "model": "catalog.product",
+  "pk": 9,
   "fields": {
-    "name": "Хатин Андрей",
-    "phone": "+7(913)054-85-43"
+    "name": "Смартфон",
+    "description": "Обычный",
+    "image": "",
+    "category": 1,
+    "price": 300,
+    "user": 8,
+    "created_at": "2024-08-14",
+    "updated_at": "2024-08-14"
   }
 },
 {
@@ -170,6 +183,46 @@
     "product": 7,
     "number": "1.1",
     "is_current": true
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$QgngymyrtJzDOjvWr6GVcW$tLj+VcijMoRpVyUXyz2LPApgBhUtbpJppppZi+LYm/c=",
+    "last_login": "2024-08-13T18:41:41.606Z",
+    "is_superuser": true,
+    "first_name": "Admin",
+    "last_name": "Home",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-08-13T16:32:17.055Z",
+    "email": "ankhatin@gmail.com",
+    "phone": null,
+    "avatar": "",
+    "token": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$LLzrj4IE5G192JKoMjaepP$qLfOwJIEXkN1tiTYx6+6jFwNoBwWmD/G/Sr781AY92Y=",
+    "last_login": "2024-08-14T12:52:23.200Z",
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-08-14T09:01:37.815Z",
+    "email": "Ankhatin@yandex.ru",
+    "phone": null,
+    "avatar": "",
+    "token": "69ddfc81142ade0c832cd7cf29fa5afa",
+    "groups": [],
+    "user_permissions": []
   }
 }
 ]
