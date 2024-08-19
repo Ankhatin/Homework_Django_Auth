@@ -33,9 +33,10 @@ class Product(models.Model):
     name = models.CharField(max_length=30, verbose_name='Товар')
     description = models.CharField(max_length=200, verbose_name='Описание')
     image = models.ImageField(upload_to='media/', null=True, blank=True, verbose_name='Изображение')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
-    price = models.IntegerField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products', verbose_name='Категория')
+    price = models.IntegerField(verbose_name='Цена')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_products', **NULLABLE)
+    is_published = models.BooleanField(default=False, verbose_name='Товар опубликован')
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
 
@@ -45,6 +46,21 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
+        permissions = [
+            (
+                'set_published',
+                'can publish product',
+            ),
+            (
+                'change_description',
+                'can change description',
+            ),
+            (
+                'change_category',
+                'can change category',
+            )
+        ]
+
 
 
 class Version(models.Model):
