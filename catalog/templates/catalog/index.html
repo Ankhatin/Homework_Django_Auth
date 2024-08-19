@@ -4,11 +4,12 @@
 <div class="row">
     {% for object in object_list %}
     <div class="col-md-4 text-center">
-        <div class="card rounded-3 shadow-sm mb-2">
+        <div class="card rounded-3 shadow-sm mb-2" style="min-height: 400px">
             <div class="card-header py-3">
                 <h4 class="my-0 fw-normal">{{ object.name }}</h4>
             </div>
-            <img src="{% add_path object.image %}" class="card-img-top" width="75%" height="300" alt="Изображения нет">
+            <img src="{% add_path object.image %}" class="img-fluid" style="width: auto; max-height: 300px"
+                 alt="Изображения нет">
             <div class="card-body">
                 <h2 class="card-title pricing-card-title">{{ object.price }}$</h2>
                 <p>

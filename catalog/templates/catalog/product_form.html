@@ -14,8 +14,19 @@
                 </h4>
                 {% endif %}
             </div>
-            {% csrf_token %}
-            {{ form.as_p }}
+            <div class="card-body">
+                {% csrf_token %}
+                {{ form.as_p }}
+<!--                    {% for field in form %}-->
+<!--                        {% if 'set_published' in perms %}-->
+<!--                            {% if field.label == 'Описание' or field.label == 'Категория' or field.label == 'Товар опубликован' %}-->
+<!--                                <p>{{ field.label_tag }} {{ field }}</p>-->
+<!--                            {% else %}-->
+<!--                                <p>{{ field.label_tag }} {{ field.disabled }}</p>-->
+<!--                            {% endif %}-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+            </div>
             {% if object %}
             <button type="submit" class="btn btn-success">Сохранить</button>
             {% else %}
