@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import ValidationError
 from django.forms import inlineformset_factory
 from django.urls import reverse_lazy, reverse
@@ -51,6 +51,12 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/users/login/'
     success_url = reverse_lazy('catalog:product_list')
 
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(ProductUpdateView, self).get_form_kwargs()
+        kwargs.update({'is_disabled': self.request.user.has_perm('catalog.set_published'),
+                       'is_super': self.request.user.is_superuser})
+        return kwargs
+
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
         VersionFormset = inlineformset_factory(Product, Version, form=VersionForm, extra=1)
@@ -67,7 +73,6 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
             if form_version.is_valid():
                 if form_version.cleaned_data.get('is_current'):
                     counter += 1
-        # counter_active_versions = len([form for form in formset if form.cleaned_data.get('is_current')])
         if counter > 1:
             form.add_error(None, ValidationError('Только одна версия товара может быть активной'))
             return self.form_invalid(form)

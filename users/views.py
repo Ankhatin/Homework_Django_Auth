@@ -13,7 +13,6 @@ from users.forms import UserRegisterForm
 from users.models import User
 
 
-
 class RegisterView(CreateView):
     model = User
     form_class = UserRegisterForm

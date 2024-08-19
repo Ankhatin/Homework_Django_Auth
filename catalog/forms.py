@@ -13,12 +13,30 @@ class StyleMixin:
                 field.widget.attrs['class'] = 'form-control'
 
 
-class ProductForm(StyleMixin, forms.ModelForm):
+class DisableWidgetMixin:
+    def __init__(self, *args, **kwargs):
+        is_disabled = kwargs.pop('is_disabled')
+        is_super = kwargs.pop('is_super')
+        disabled_fields = ('description', 'category', 'is_published')
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if is_disabled and not is_super:
+                if field_name not in disabled_fields:
+                    field.widget.attrs['disabled'] = True
+
+
+class ProductForm(DisableWidgetMixin, StyleMixin, forms.ModelForm):
     vorbidden_words = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
 
     class Meta:
         model = Product
         exclude = ('user',)
+
+
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     is_disabled = kwargs.pop('disabled')
+    #     if is_disabled:
 
     def clean_name(self):
         cleaned_name = self.cleaned_data.get('name')
