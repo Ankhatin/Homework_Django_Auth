@@ -149,3 +149,5 @@ EMAIL_HOST_USER = 'ankhatin@gmail.com'
 EMAIL_HOST_PASSWORD = 'zquduaethkmhxrux'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+LOGIN_URL = '/users/login'
