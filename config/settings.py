@@ -88,7 +88,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -151,3 +150,13 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 LOGIN_URL = '/users/login'
+
+CACHE_ENABLED = True
+if CACHE_ENABLED:
+    CACHES = {
+        'default': {
+            'BACKEND': "django.core.cache.backends.redis.RedisCache",
+            'LOCATION': "redis://127.0.0.1:6379",
+            'TIMEOUT': 300,
+        }
+    }
