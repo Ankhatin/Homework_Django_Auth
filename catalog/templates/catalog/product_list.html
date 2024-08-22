@@ -29,9 +29,9 @@
             </div>
             <div class="card-footer">
                 <div class="bnt-group">
-                    <a type="button" href="{% url 'catalog:edit' object.pk %}" class="btn btn-sm btn-secondary">Посмотреть</a>
+                    <a type="button" href="{% url 'catalog:product' object.pk %}" class="btn btn-sm btn-secondary mb-1">Посмотреть</a>
                     {% if perms.catalog.set_published or user == object.user %}
-                    <a type="button" href="{% url 'catalog:edit' object.pk %}" class="btn btn-sm btn-warning">Редактировать</a>
+                    <a type="button" href="{% url 'catalog:edit' object.pk %}" class="btn btn-sm btn-warning mb-1">Редактировать</a>
                     {% endif %}
                     {% if user == object.user %}
                     <a type="button" href="{% url 'catalog:delete' object.pk %}" class="btn btn-sm btn-danger">Удалить</a>
