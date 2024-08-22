@@ -1,6 +1,9 @@
 {% extends 'catalog/base.html' %}
 {% load tags %}
 {% block content %}
+<div class="col-md-4 mb-5">
+    <a class="btn btn-outline-primary" href="{% url 'catalog:category' %}">Категории товаров</a>
+</div>
 <div class="row">
     {% for object in object_list %}
     <div class="col-md-4 text-center">
