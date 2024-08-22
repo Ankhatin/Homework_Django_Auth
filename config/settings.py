@@ -11,9 +11,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j@2dwb$^fl5drzu5%*qcq!j(4-d$z@$5(5tqe(y65z8z520u1#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = []
 
@@ -81,8 +85,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'homework_django',
-        'USER': 'postgres',
-        'PASSWORD': '12345',
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }
@@ -144,19 +148,19 @@ LOGOUT_REDIRECT_URL = '/'
 DEFAULT_FROM_EMAIL = 'ankhatin@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'ankhatin@gmail.com'
-EMAIL_HOST_PASSWORD = 'zquduaethkmhxrux'
+EMAIL_HOST_USER = os.getenv('ankhatin@gmail.com')
+EMAIL_HOST_PASSWORD = os.getenv('zquduaethkmhxrux')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 LOGIN_URL = '/users/login'
 
-CACHE_ENABLED = True
+CACHE_ENABLED = os.getenv('CACHE_ENABLED') == 'True'
 if CACHE_ENABLED:
     CACHES = {
         'default': {
             'BACKEND': "django.core.cache.backends.redis.RedisCache",
-            'LOCATION': "redis://127.0.0.1:6379",
+            'LOCATION': os.getenv('CACHE_LOCATION'),
             'TIMEOUT': 300,
         }
     }
