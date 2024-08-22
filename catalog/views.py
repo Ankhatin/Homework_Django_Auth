@@ -7,6 +7,8 @@ from catalog.forms import ProductForm, VersionForm
 from catalog.models import *
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView, TemplateView
 
+from catalog.services import get_cached_categories
+
 
 class IndexView(TemplateView):
     template_name = 'catalog/index.html'
@@ -97,6 +99,15 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     login_url = '/users/login/'
     success_url = reverse_lazy('catalog:product_list')
+
+
+class CategoryListView(ListView):
+    model = Category
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['objects'] = get_cached_categories()
+        return context_data
 
 
 class ContactsView(TemplateView):
